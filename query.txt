@@ -1,0 +1,38 @@
+-- 1. query mencari anak dari budi
+
+SELECT parent.`name` AS parent_name, child.`name` AS child_name
+FROM `families` AS parent 
+INNER JOIN `families` AS child 
+ON parent.`id` = `child`.`parentID` 
+WHERE `parent`.`name` = 'Budi';
+
+-- 2. query mencari cucu dari budi
+SELECT parent.`name` AS parent_name, grandchild.`name` AS grandchild_name
+FROM `families` AS parent 
+INNER JOIN `families` AS child 
+ON parent.`id` = `child`.`parentID` 
+INNER JOIN `families` AS grandchild
+ON `child`.`id` = `grandchild`.`parentID`
+WHERE `parent`.`name` = 'Budi';
+
+-- mencari cucu budi jenis kelamin perempuan
+SELECT parent.`name` AS parent_name, grandchild.`name` AS grandchild_name
+FROM `families` AS parent 
+INNER JOIN `families` AS child 
+ON parent.`id` = `child`.`parentID` 
+INNER JOIN `families` AS grandchild
+ON `child`.`id` = `grandchild`.`parentID`
+WHERE `parent`.`name` = 'Budi'
+AND `grandchild`.`gender` = 'perempuan';
+
+-- jawaban nomor 6
+
+-- mencari sepupu laki laki farah
+SELECT parent.`name` AS parent_name, grandchild.`name` AS grandchild_name
+FROM `families` AS parent 
+INNER JOIN `families` AS child 
+ON parent.`id` = `child`.`parentID` 
+INNER JOIN `families` AS grandchild
+ON `child`.`id` = `grandchild`.`parentID`
+WHERE `parent`.`name` = 'Budi'
+AND grandchild.gender = 'laki-laki';
